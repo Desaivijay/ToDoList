@@ -11,6 +11,7 @@ import com.vijay.todolist.databinding.LayoutListItemBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // View Binding variable
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var itemList: ArrayList<String>
@@ -19,10 +20,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Arraylist for listview
         itemList = ArrayList<String>()
-        var itemAdapter = MyAdapter(itemList)
+
+        // adapter to set with Listview
+        val itemAdapter = MyAdapter(itemList)
         binding.itemsList.adapter = itemAdapter
 
+        // add button click event to add text into listview
         binding.addButton.setOnClickListener {
             val newItem = binding.itemEditText.text.toString().trim()
             if (newItem.isNotEmpty()) {
@@ -31,20 +36,10 @@ class MainActivity : AppCompatActivity() {
                 binding.itemEditText.text.clear()
             }
         }
-
-        binding.itemsList.setOnItemClickListener { _, _, position, _ ->
-            binding.itemsList.setItemChecked(position, true)
-        }
-
-        binding.itemsList.setOnItemLongClickListener { _, _, position, _ ->
-            itemList.removeAt(position)
-            itemAdapter.notifyDataSetChanged()
-            true
-        }
-
     }
 }
 
+// Custom adapter for list view
 class MyAdapter(private val itemList: ArrayList<String>) : BaseAdapter() {
     override fun getCount(): Int {
         return itemList.size
@@ -66,6 +61,8 @@ class MyAdapter(private val itemList: ArrayList<String>) : BaseAdapter() {
 
         binding.ctvItem.setCheckMarkDrawable(R.drawable.uncheck_button)
         binding.ctvItem.isChecked = false
+
+        // CheckedTextView on click listener
         binding.ctvItem.setOnClickListener {
             if (binding.ctvItem.isChecked) {
                 binding.ctvItem.setCheckMarkDrawable(R.drawable.uncheck_button)
@@ -76,6 +73,7 @@ class MyAdapter(private val itemList: ArrayList<String>) : BaseAdapter() {
             }
         }
 
+        // Delete button to delete item from listview
         binding.ibDelete.setOnClickListener {
             itemList.removeAt(position)
             notifyDataSetChanged()
