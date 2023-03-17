@@ -7,8 +7,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!-- EditText view for user input  -->
 
-        <EditText
+    <EditText
             android:id="@+id/item_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,7 +18,9 @@
             android:singleLine="true"
             android:textColorHint="@android:color/darker_gray" />
 
-        <Button
+    <!-- Button view for adding items to the list -->
+
+    <Button
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +29,9 @@
             android:layout_marginTop="16dp"
             android:text="Add" />
 
-        <ListView
+
+    <!-- ListView view for displaying the list of items  -->
+    <ListView
             android:id="@+id/items_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
